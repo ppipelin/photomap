@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.geotests.net/couleurs/index.html?l=fr -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Proportions et relations color&amp;eacute;es d'une image</title>
+	<link href="./Proportions et relations color&amp;eacute;es d&#39;une image_files/css" rel="stylesheet" type="text/css">
+	<script async="" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/analytics.js.téléchargement"></script><script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/three.min.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/Detector.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/OrbitControls.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/TrackballControls.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/jscolor.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/colorist2.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/canvas2svg.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/rgbcolor.js.téléchargement"></script>
+	<!-- <script type="text/javascript" src="js/canvg-1.3/StackBlur.js"></script> -->
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/canvg.js.téléchargement"></script>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/dat.gui.min.js.téléchargement"></script><style type="text/css">.dg {
+  /** Clear list styles */
+  /* Auto-place container */
+  /* Auto-placed GUI's */
+  /* Line items that don't contain folders. */
+  /** Folder names */
+  /** Hides closed items */
+  /** Controller row */
+  /** Name-half (left) */
+  /** Controller-half (right) */
+  /** Controller placement */
+  /** Shorter number boxes when slider is present. */
+  /** Ensure the entire boolean and function row shows a hand */ }
+  .dg ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    clear: both; }
+  .dg.ac {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 0; }
+  .dg:not(.ac) .main {
+    /** Exclude mains in ac so that we don't hide close button */
+    overflow: hidden; }
+  .dg.main {
+    -webkit-transition: opacity 0.1s linear;
+    -o-transition: opacity 0.1s linear;
+    -moz-transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear; }
+    .dg.main.taller-than-window {
+      overflow-y: auto; }
+      .dg.main.taller-than-window .close-button {
+        opacity: 1;
+        /* TODO, these are style notes */
+        margin-top: -1px;
+        border-top: 1px solid #2c2c2c; }
+    .dg.main ul.closed .close-button {
+      opacity: 1 !important; }
+    .dg.main:hover .close-button,
+    .dg.main .close-button.drag {
+      opacity: 1; }
+    .dg.main .close-button {
+      /*opacity: 0;*/
+      -webkit-transition: opacity 0.1s linear;
+      -o-transition: opacity 0.1s linear;
+      -moz-transition: opacity 0.1s linear;
+      transition: opacity 0.1s linear;
+      border: 0;
+      position: absolute;
+      line-height: 19px;
+      height: 20px;
+      /* TODO, these are style notes */
+      cursor: pointer;
+      text-align: center;
+      background-color: #000; }
+      .dg.main .close-button:hover {
+        background-color: #111; }
+  .dg.a {
+    float: right;
+    margin-right: 15px;
+    overflow-x: hidden; }
+    .dg.a.has-save > ul {
+      margin-top: 27px; }
+      .dg.a.has-save > ul.closed {
+        margin-top: 0; }
+    .dg.a .save-row {
+      position: fixed;
+      top: 0;
+      z-index: 1002; }
+  .dg li {
+    -webkit-transition: height 0.1s ease-out;
+    -o-transition: height 0.1s ease-out;
+    -moz-transition: height 0.1s ease-out;
+    transition: height 0.1s ease-out; }
+  .dg li:not(.folder) {
+    cursor: auto;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+    padding: 0 4px 0 5px; }
+  .dg li.folder {
+    padding: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0); }
+  .dg li.title {
+    cursor: pointer;
+    margin-left: -4px; }
+  .dg .closed li:not(.title),
+  .dg .closed ul li,
+  .dg .closed ul li > * {
+    height: 0;
+    overflow: hidden;
+    border: 0; }
+  .dg .cr {
+    clear: both;
+    padding-left: 3px;
+    height: 27px; }
+  .dg .property-name {
+    cursor: default;
+    float: left;
+    clear: left;
+    width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .dg .c {
+    float: left;
+    width: 60%; }
+  .dg .c input[type=text] {
+    border: 0;
+    margin-top: 4px;
+    padding: 3px;
+    width: 100%;
+    float: right; }
+  .dg .has-slider input[type=text] {
+    width: 30%;
+    /*display: none;*/
+    margin-left: 0; }
+  .dg .slider {
+    float: left;
+    width: 66%;
+    margin-left: -5px;
+    margin-right: 0;
+    height: 19px;
+    margin-top: 4px; }
+  .dg .slider-fg {
+    height: 100%; }
+  .dg .c input[type=checkbox] {
+    margin-top: 9px; }
+  .dg .c select {
+    margin-top: 5px; }
+  .dg .cr.function,
+  .dg .cr.function .property-name,
+  .dg .cr.function *,
+  .dg .cr.boolean,
+  .dg .cr.boolean * {
+    cursor: pointer; }
+  .dg .selector {
+    display: none;
+    position: absolute;
+    margin-left: -9px;
+    margin-top: 23px;
+    z-index: 10; }
+  .dg .c:hover .selector,
+  .dg .selector.drag {
+    display: block; }
+  .dg li.save-row {
+    padding: 0; }
+    .dg li.save-row .button {
+      display: inline-block;
+      padding: 0px 6px; }
+  .dg.dialogue {
+    background-color: #222;
+    width: 460px;
+    padding: 15px;
+    font-size: 13px;
+    line-height: 15px; }
+
+/* TODO Separate style and structure */
+#dg-new-constructor {
+  padding: 10px;
+  color: #222;
+  font-family: Monaco, monospace;
+  font-size: 10px;
+  border: 0;
+  resize: none;
+  box-shadow: inset 1px 1px 1px #888;
+  word-wrap: break-word;
+  margin: 12px 0;
+  display: block;
+  width: 440px;
+  overflow-y: scroll;
+  height: 100px;
+  position: relative; }
+
+#dg-local-explain {
+  display: none;
+  font-size: 11px;
+  line-height: 17px;
+  border-radius: 3px;
+  background-color: #333;
+  padding: 8px;
+  margin-top: 10px; }
+  #dg-local-explain code {
+    font-size: 10px; }
+
+#dat-gui-save-locally {
+  display: none; }
+
+/** Main type */
+.dg {
+  color: #eee;
+  font: 11px 'Lucida Grande', sans-serif;
+  text-shadow: 0 -1px 0 #111;
+  /** Auto place */
+  /* Controller row, <li> */
+  /** Controllers */ }
+  .dg.main {
+    /** Scrollbar */ }
+    .dg.main::-webkit-scrollbar {
+      width: 5px;
+      background: #1a1a1a; }
+    .dg.main::-webkit-scrollbar-corner {
+      height: 0;
+      display: none; }
+    .dg.main::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: #676767; }
+  .dg li:not(.folder) {
+    background: #1a1a1a;
+    border-bottom: 1px solid #2c2c2c; }
+  .dg li.save-row {
+    line-height: 25px;
+    background: #dad5cb;
+    border: 0; }
+    .dg li.save-row select {
+      margin-left: 5px;
+      width: 108px; }
+    .dg li.save-row .button {
+      margin-left: 5px;
+      margin-top: 1px;
+      border-radius: 2px;
+      font-size: 9px;
+      line-height: 7px;
+      padding: 4px 4px 5px 4px;
+      background: #c5bdad;
+      color: #fff;
+      text-shadow: 0 1px 0 #b0a58f;
+      box-shadow: 0 -1px 0 #b0a58f;
+      cursor: pointer; }
+      .dg li.save-row .button.gears {
+        background: #c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;
+        height: 7px;
+        width: 8px; }
+      .dg li.save-row .button:hover {
+        background-color: #bab19e;
+        box-shadow: 0 -1px 0 #b0a58f; }
+  .dg li.folder {
+    border-bottom: 0; }
+  .dg li.title {
+    padding-left: 16px;
+    background: black url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .dg .closed li.title {
+    background-image: url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==); }
+  .dg .cr.boolean {
+    border-left: 3px solid #806787; }
+  .dg .cr.function {
+    border-left: 3px solid #e61d5f; }
+  .dg .cr.number {
+    border-left: 3px solid #2fa1d6; }
+    .dg .cr.number input[type=text] {
+      color: #2fa1d6; }
+  .dg .cr.string {
+    border-left: 3px solid #1ed36f; }
+    .dg .cr.string input[type=text] {
+      color: #1ed36f; }
+  .dg .cr.function:hover, .dg .cr.boolean:hover {
+    background: #111; }
+  .dg .c input[type=text] {
+    background: #303030;
+    outline: none; }
+    .dg .c input[type=text]:hover {
+      background: #3c3c3c; }
+    .dg .c input[type=text]:focus {
+      background: #494949;
+      color: #fff; }
+  .dg .c .slider {
+    background: #303030;
+    cursor: ew-resize; }
+  .dg .c .slider-fg {
+    background: #2fa1d6; }
+  .dg .c .slider:hover {
+    background: #3c3c3c; }
+    .dg .c .slider:hover .slider-fg {
+      background: #44abda; }
+</style>
+	<link href="./Proportions et relations color&amp;eacute;es d&#39;une image_files/frequs_nt.css" rel="stylesheet" type="text/css">
+<style type="text/css">/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+#wanteeed html, #wanteeed body, #wanteeed div, #wanteeed span, #wanteeed applet, #wanteeed object, #wanteeed iframe,
+#wanteeed h1, #wanteeed h2, #wanteeed h3, #wanteeed h4, #wanteeed h5, #wanteeed h6, #wanteeed p, #wanteeed blockquote, #wanteeed pre,
+#wanteeed a, #wanteeed abbr, #wanteeed acronym, #wanteeed address, #wanteeed big, #wanteeed cite, #wanteeed code,
+#wanteeed del, #wanteeed dfn, #wanteeed em, #wanteeed img, #wanteeed ins, #wanteeed kbd, #wanteeed q, #wanteeed s, #wanteeed samp,
+#wanteeed small, #wanteeed strike, #wanteeed strong, #wanteeed sub, #wanteeed sup, #wanteeed tt, #wanteeed var,
+#wanteeed b, #wanteeed u, #wanteeed i, #wanteeed center,
+#wanteeed dl, #wanteeed dt, #wanteeed dd, #wanteeed ol, #wanteeed ul, #wanteeed li,
+#wanteeed fieldset, #wanteeed form, #wanteeed label, #wanteeed legend,
+#wanteeed table, #wanteeed caption, #wanteeed tbody, #wanteeed tfoot, #wanteeed thead, #wanteeed tr, #wanteeed th, #wanteeed td,
+#wanteeed article, #wanteeed aside, #wanteeed canvas, #wanteeed details, #wanteeed embed, 
+#wanteeed figure, #wanteeed figcaption, #wanteeed footer, #wanteeed header, #wanteeed hgroup, 
+#wanteeed menu, #wanteeed nav, #wanteeed output, #wanteeed ruby, #wanteeed section, #wanteeed summary,
+#wanteeed time, #wanteeed mark, #wanteeed audio, #wanteeed video, #wanteeed button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*font-size: 100%;
+	font: inherit;*/
+	font:13px "Verdana", sans-serif;
+	text-align:left;
+	vertical-align: baseline;
+	-webkit-box-shadow: none;
+	-webkit-box-sizing:initial;
+	box-sizing:initial;
+	box-shadow: none;
+	color:#555555;
+	text-transform:none;
+}
+/* HTML5 display-role reset for older browsers */
+#wanteeed article, #wanteeed aside, #wanteeed details, #wanteeed figcaption, #wanteeed figure, 
+#wanteeed footer, #wanteeed header, #wanteeed hgroup, #wanteeed menu, #wanteeed nav, #wanteeed section {
+	display: block;
+}
+#wanteeed body {
+	line-height: 1;
+}
+#wanteeed ol, #wanteeed ul {
+	list-style: none;
+}
+#wanteeed blockquote, #wanteeed q {
+	quotes: none;
+}
+#wanteeed blockquote:before, #wanteeed blockquote:after,
+#wanteeed q:before, #wanteeed q:after {
+	content: '';
+	content: none;
+}
+#wanteeed table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*report*/
+
+#wanteeed-report html, #wanteeed-report body, #wanteeed-report div, #wanteeed-report span, #wanteeed-report applet, #wanteeed-report object, #wanteeed-report iframe,
+#wanteeed-report h1, #wanteeed-report h2, #wanteeed-report h3, #wanteeed-report h4, #wanteeed-report h5, #wanteeed-report h6, #wanteeed-report p, #wanteeed-report blockquote, #wanteeed-report pre,
+#wanteeed-report a, #wanteeed-report abbr, #wanteeed-report acronym, #wanteeed-report address, #wanteeed-report big, #wanteeed-report cite, #wanteeed-report code,
+#wanteeed-report del, #wanteeed-report dfn, #wanteeed-report em, #wanteeed-report img, #wanteeed-report ins, #wanteeed-report kbd, #wanteeed-report q, #wanteeed-report s, #wanteeed-report samp,
+#wanteeed-report small, #wanteeed-report strike, #wanteeed-report strong, #wanteeed-report sub, #wanteeed-report sup, #wanteeed-report tt, #wanteeed-report var,
+#wanteeed-report b, #wanteeed-report u, #wanteeed-report i, #wanteeed-report center,
+#wanteeed-report dl, #wanteeed-report dt, #wanteeed-report dd, #wanteeed-report ol, #wanteeed-report ul, #wanteeed-report li,
+#wanteeed-report fieldset, #wanteeed-report form, #wanteeed-report label, #wanteeed-report legend,
+#wanteeed-report table, #wanteeed-report caption, #wanteeed-report tbody, #wanteeed-report tfoot, #wanteeed-report thead, #wanteeed-report tr, #wanteeed-report th, #wanteeed-report td,
+#wanteeed-report article, #wanteeed-report aside, #wanteeed-report canvas, #wanteeed-report details, #wanteeed-report embed, 
+#wanteeed-report figure, #wanteeed-report figcaption, #wanteeed-report footer, #wanteeed-report header, #wanteeed-report hgroup, 
+#wanteeed-report menu, #wanteeed-report nav, #wanteeed-report output, #wanteeed-report ruby, #wanteeed-report section, #wanteeed-report summary,
+#wanteeed-report time, #wanteeed-report mark, #wanteeed-report audio, #wanteeed-report video, #wanteeed-report button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*font-size: 100%;*/
+	text-align:left;
+	font:13px "Verdana", sans-serif;
+	vertical-align: baseline;
+	-webkit-box-shadow: none;
+	-webkit-box-sizing:initial;
+	box-sizing:initial;
+	box-shadow: none;
+	color:#555555;
+	text-transform:none;
+}
+/* HTML5 display-role reset for older browsers */
+#wanteeed-report article, #wanteeed-report aside, #wanteeed-report details, #wanteeed-report figcaption, #wanteeed-report figure, 
+#wanteeed-report footer, #wanteeed-report header, #wanteeed-report hgroup, #wanteeed-report menu, #wanteeed-report nav, #wanteeed-report section {
+	display: block;
+}
+#wanteeed-report body {
+	line-height: 1;
+}
+#wanteeed-report ol, #wanteeed-report ul {
+	list-style: none;
+}
+#wanteeed-report blockquote, #wanteeed-report q {
+	quotes: none;
+}
+#wanteeed-report blockquote:before, #wanteeed-report blockquote:after,
+#wanteeed-report q:before, #wanteeed-report q:after {
+	content: '';
+	content: none;
+}
+
+/*main item **/
+
+
+.wanteeed-main-item html, .wanteeed-main-item body, .wanteeed-main-item div, .wanteeed-main-item span, .wanteeed-main-item applet, .wanteeed-main-item object, .wanteeed-main-item iframe,
+.wanteeed-main-item h1, .wanteeed-main-item h2, .wanteeed-main-item h3, .wanteeed-main-item h4, .wanteeed-main-item h5, .wanteeed-main-item h6, .wanteeed-main-item p, .wanteeed-main-item blockquote, .wanteeed-main-item pre,
+.wanteeed-main-item a, .wanteeed-main-item abbr, .wanteeed-main-item acronym, .wanteeed-main-item address, .wanteeed-main-item big, .wanteeed-main-item cite, .wanteeed-main-item code,
+.wanteeed-main-item del, .wanteeed-main-item dfn, .wanteeed-main-item em, .wanteeed-main-item img, .wanteeed-main-item ins, .wanteeed-main-item kbd, .wanteeed-main-item q, .wanteeed-main-item s, .wanteeed-main-item samp,
+.wanteeed-main-item small, .wanteeed-main-item strike, .wanteeed-main-item strong, .wanteeed-main-item sub, .wanteeed-main-item sup, .wanteeed-main-item tt, .wanteeed-main-item var,
+.wanteeed-main-item b, .wanteeed-main-item u, .wanteeed-main-item i, .wanteeed-main-item center,
+.wanteeed-main-item dl, .wanteeed-main-item dt, .wanteeed-main-item dd, .wanteeed-main-item ol, .wanteeed-main-item ul, .wanteeed-main-item li,
+.wanteeed-main-item fieldset, .wanteeed-main-item form, .wanteeed-main-item label, .wanteeed-main-item legend,
+.wanteeed-main-item table, .wanteeed-main-item caption, .wanteeed-main-item tbody, .wanteeed-main-item tfoot, .wanteeed-main-item thead, .wanteeed-main-item tr, .wanteeed-main-item th, .wanteeed-main-item td,
+.wanteeed-main-item article, .wanteeed-main-item aside, .wanteeed-main-item canvas, .wanteeed-main-item details, .wanteeed-main-item embed, 
+.wanteeed-main-item figure, .wanteeed-main-item figcaption, .wanteeed-main-item footer, .wanteeed-main-item header, .wanteeed-main-item hgroup, 
+.wanteeed-main-item menu, .wanteeed-main-item nav, .wanteeed-main-item output, .wanteeed-main-item ruby, .wanteeed-main-item section, .wanteeed-main-item summary,
+.wanteeed-main-item time, .wanteeed-main-item mark, .wanteeed-main-item audio, .wanteeed-main-item video, .wanteeed-main-item button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*font-size: 100%;*/
+	text-align:left;
+	font:13px "Verdana", sans-serif;
+	vertical-align: baseline;
+	-webkit-box-shadow: none;
+	-webkit-box-sizing:initial;
+	box-sizing:initial;
+	box-shadow: none;
+	color:#555555;
+	text-transform:none;
+}
+/* HTML5 display-role reset for older browsers */
+.wanteeed-main-item article, .wanteeed-main-item aside, .wanteeed-main-item details, .wanteeed-main-item figcaption, .wanteeed-main-item figure, 
+.wanteeed-main-item footer, .wanteeed-main-item header, .wanteeed-main-item hgroup, .wanteeed-main-item menu, .wanteeed-main-item nav, .wanteeed-main-item section {
+	display: block;
+}
+.wanteeed-main-item body {
+	line-height: 1;
+}
+.wanteeed-main-item ol, .wanteeed-main-item ul {
+	list-style: none;
+}
+.wanteeed-main-item blockquote, .wanteeed-main-item q {
+	quotes: none;
+}
+.wanteeed-main-item blockquote:before, .wanteeed-main-item blockquote:after,
+.wanteeed-main-item q:before, .wanteeed-main-item q:after {
+	content: '';
+	content: none;
+}
+
+
+
+
+#wanteeed-report table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#wanteeed-progress-bar div  {
+    background-size: 30px 30px;
+	color:white;
+	background-color:rgb(209, 43, 53);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);            
+    
+    -webkit-animation: animate-stripes 3s linear infinite;             
+}
+
+
+@-webkit-keyframes animate-stripes
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: 60px 0;
+    }
+}</style><style type="text/css">/* ========================================================================
+ * bootstrap-tour - v0.10.1
+ * http://bootstraptour.com
+ * ========================================================================
+ * Copyright 2012-2013 Ulrich Sossou
+ *
+ * ========================================================================
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================================
+ */
+
+/*!
+ * Bootstrap v3.1.0 (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+
+
+.popover-wanteeed html, .popover-wanteeed body, .popover-wanteeed div, .popover-wanteeed span, .popover-wanteeed applet, .popover-wanteeed object, .popover-wanteeed iframe,
+.popover-wanteeed h1, .popover-wanteeed h2, .popover-wanteeed h3, .popover-wanteeed h4, .popover-wanteeed h5, .popover-wanteeed h6, .popover-wanteeed p, .popover-wanteeed blockquote, .popover-wanteeed pre,
+.popover-wanteeed a, .popover-wanteeed abbr, .popover-wanteeed acronym, .popover-wanteeed address, .popover-wanteeed big, .popover-wanteeed cite, .popover-wanteeed code,
+.popover-wanteeed del, .popover-wanteeed dfn, .popover-wanteeed em, .popover-wanteeed img, .popover-wanteeed ins, .popover-wanteeed kbd, .popover-wanteeed q, .popover-wanteeed s, .popover-wanteeed samp,
+.popover-wanteeed small, .popover-wanteeed strike, .popover-wanteeed strong, .popover-wanteeed sub, .popover-wanteeed sup, .popover-wanteeed tt, .popover-wanteeed var,
+.popover-wanteeed b, .popover-wanteeed u, .popover-wanteeed i, .popover-wanteeed center,
+.popover-wanteeed dl, .popover-wanteeed dt, .popover-wanteeed dd, .popover-wanteeed ol, .popover-wanteeed ul, .popover-wanteeed li,
+.popover-wanteeed fieldset, .popover-wanteeed form, .popover-wanteeed label, .popover-wanteeed legend,
+.popover-wanteeed table, .popover-wanteeed caption, .popover-wanteeed tbody, .popover-wanteeed tfoot, .popover-wanteeed thead, .popover-wanteeed tr, .popover-wanteeed th, .popover-wanteeed td,
+.popover-wanteeed article, .popover-wanteeed aside, .popover-wanteeed canvas, .popover-wanteeed details, .popover-wanteeed embed,
+.popover-wanteeed figure, .popover-wanteeed figcaption, .popover-wanteeed footer, .popover-wanteeed header, .popover-wanteeed hgroup,
+.popover-wanteeed menu, .popover-wanteeed nav, .popover-wanteeed output, .popover-wanteeed ruby, .popover-wanteeed section, .popover-wanteeed summary,
+.popover-wanteeed time, .popover-wanteeed mark, .popover-wanteeed audio, .popover-wanteeed video, .popover-wanteeed button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*font-size: 100%;
+	font: inherit;*/
+	font:13px "Verdana", sans-serif;
+	text-align:left;
+	vertical-align: baseline;
+	-webkit-box-shadow: none;
+	-webkit-box-sizing:initial;
+	box-sizing:initial;
+	box-shadow: none;
+	color:#555555;
+	text-transform:none;
+	background:none;
+	bottom:inherit ;
+}
+/* HTML5 display-role reset for older browsers *//*
+.popover-wanteeed article, .popover-wanteeed aside, .popover-wanteeed details, .popover-wanteeed figcaption, .popover-wanteeed figure,
+.popover-wanteeed footer, .popover-wanteeed header, .popover-wanteeed hgroup, .popover-wanteeed menu, .popover-wanteeed nav, .popover-wanteeed section {
+	display: block;
+}
+.popover-wanteeed body {
+	line-height: 1;
+}
+.popover-wanteeed ol, .popover-wanteeed ul {
+	list-style: none;
+}
+.popover-wanteeed blockquote, .popover-wanteeed q {
+	quotes: none;
+}
+.popover-wanteeed blockquote:before, .popover-wanteeed blockquote:after,
+.popover-wanteeed q:before, .popover-wanteeed q:after {
+	content: '';
+	content: none;
+}
+.popover-wanteeed table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}*/
+
+
+
+.popover-wanteeed .btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.popover-wanteeed .btn:focus,
+.popover-wanteeed .btn:active:focus,
+.popover-wanteeed .btn.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.popover-wanteeed .btn:hover,
+.popover-wanteeed .btn:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.popover-wanteeed .btn:active,
+.popover-wanteeed .btn.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.popover-wanteeed .btn.disabled,
+.popover-wanteeed .btn[disabled],
+fieldset[disabled] .btn {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.popover-wanteeed .btn-default {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.popover-wanteeed .btn-default:hover,
+.popover-wanteeed .btn-default:focus,
+.popover-wanteeed .btn-default:active,
+.popover-wanteeed .btn-default.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-default {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.popover-wanteeed .btn-default:active,
+.popover-wanteeed .btn-default.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-default {
+  background-image: none;
+}
+.popover-wanteeed .btn-default.disabled,
+.popover-wanteeed .btn-default[disabled],
+.popover-wanteeed fieldset[disabled] .btn-default,
+.popover-wanteeed .btn-default.disabled:hover,
+.popover-wanteeed .btn-default[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-default:hover,
+.popover-wanteeed .btn-default.disabled:focus,
+.popover-wanteeed .btn-default[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-default:focus,
+.popover-wanteeed .btn-default.disabled:active,
+.popover-wanteeed .btn-default[disabled]:active,
+.popover-wanteeed fieldset[disabled] .btn-default:active,
+.popover-wanteeed .btn-default.disabled.active,
+.popover-wanteeed .btn-default[disabled].active,
+.popover-wanteeed fieldset[disabled] .btn-default.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.popover-wanteeed .btn-default .badge {
+  color: #ffffff;
+  background-color: #333333;
+}
+.popover-wanteeed .btn-primary {
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.popover-wanteeed .btn-primary:hover,
+.popover-wanteeed .btn-primary:focus,
+.popover-wanteeed .btn-primary:active,
+.popover-wanteeed .btn-primary.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #3071a9;
+  border-color: #285e8e;
+}
+.popover-wanteeed .btn-primary:active,
+.popover-wanteeed .btn-primary.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.popover-wanteeed .btn-primary.disabled,
+.popover-wanteeed .btn-primary[disabled],
+.popover-wanteeed fieldset[disabled] .btn-primary,
+.popover-wanteeed .btn-primary.disabled:hover,
+.popover-wanteeed .btn-primary[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-primary:hover,
+.popover-wanteeed .btn-primary.disabled:focus,
+.popover-wanteeed .btn-primary[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-primary:focus,
+.popover-wanteeed .btn-primary.disabled:active,
+.popover-wanteeed .btn-primary[disabled]:active,
+.popover-wanteeed fieldset[disabled] .btn-primary:active,
+.popover-wanteeed .btn-primary.disabled.active,
+.popover-wanteeed .btn-primary[disabled].active,
+.popover-wanteeed fieldset[disabled] .btn-primary.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.popover-wanteeed .btn-primary .badge {
+  color: #428bca;
+  background-color: #ffffff;
+}
+.popover-wanteeed .btn-success {
+  color: #ffffff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.popover-wanteeed .btn-success:hover,
+.popover-wanteeed .btn-success:focus,
+.popover-wanteeed .btn-success:active,
+.popover-wanteeed .btn-success.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-success {
+  color: #ffffff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.popover-wanteeed .btn-success:active,
+.popover-wanteeed .btn-success.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-success {
+  background-image: none;
+}
+.popover-wanteeed .btn-success.disabled,
+.popover-wanteeed .btn-success[disabled],
+.popover-wanteeed fieldset[disabled] .btn-success,
+.popover-wanteeed .btn-success.disabled:hover,
+.popover-wanteeed .btn-success[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-success:hover,
+.popover-wanteeed .btn-success.disabled:focus,
+.popover-wanteeed .btn-success[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-success:focus,
+.popover-wanteeed .btn-success.disabled:active,
+.popover-wanteeed .btn-success[disabled]:active,
+.popover-wanteeed fieldset[disabled] .btn-success:active,
+.popover-wanteeed .btn-success.disabled.active,
+.popover-wanteeed .btn-success[disabled].active,
+.popover-wanteeed fieldset[disabled] .btn-success.active {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.popover-wanteeed .btn-success .badge {
+  color: #5cb85c;
+  background-color: #ffffff;
+}
+.popover-wanteeed .btn-info {
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.popover-wanteeed .btn-info:hover,
+.popover-wanteeed .btn-info:focus,
+.popover-wanteeed .btn-info:active,
+.popover-wanteeed .btn-info.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-info {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.popover-wanteeed .btn-info:active,
+.popover-wanteeed .btn-info.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-info {
+  background-image: none;
+}
+.popover-wanteeed .btn-info.disabled,
+.popover-wanteeed .btn-info[disabled],
+.popover-wanteeed fieldset[disabled] .btn-info,
+.popover-wanteeed .btn-info.disabled:hover,
+.popover-wanteeed .btn-info[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-info:hover,
+.popover-wanteeed .btn-info.disabled:focus,
+.popover-wanteeed .btn-info[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-info:focus,
+.popover-wanteeed .btn-info.disabled:active,
+.popover-wanteeed .btn-info[disabled]:active,
+.popover-wanteeed fieldset[disabled] .btn-info:active,
+.popover-wanteeed .btn-info.disabled.active,
+.popover-wanteeed .btn-info[disabled].active,
+.popover-wanteeed fieldset[disabled] .btn-info.active {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.popover-wanteeed .btn-info .badge {
+  color: #5bc0de;
+  background-color: #ffffff;
+}
+.popover-wanteeed .btn-warning {
+  color: #ffffff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.popover-wanteeed .btn-warning:hover,
+.popover-wanteeed .btn-warning:focus,
+.popover-wanteeed .btn-warning:active,
+.popover-wanteeed .btn-warning.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-warning {
+  color: #ffffff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+.popover-wanteeed .btn-warning:active,
+.popover-wanteeed .btn-warning.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-warning {
+  background-image: none;
+}
+.popover-wanteeed .btn-warning.disabled,
+.popover-wanteeed .btn-warning[disabled],
+.popover-wanteeed fieldset[disabled] .btn-warning,
+.popover-wanteeed .btn-warning.disabled:hover,
+.popover-wanteeed .btn-warning[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-warning:hover,
+.popover-wanteeed .btn-warning.disabled:focus,
+.popover-wanteeed .btn-warning[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-warning:focus,
+.popover-wanteeed .btn-warning.disabled:active,
+.popover-wanteeed .btn-warning[disabled]:active,
+.popover-wanteeed fieldset[disabled] .btn-warning:active,
+.popover-wanteeed .btn-warning.disabled.active,
+.popover-wanteeed .btn-warning[disabled].active,
+.popover-wanteeed fieldset[disabled] .btn-warning.active {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.popover-wanteeed .btn-warning .badge {
+  color: #f0ad4e;
+  background-color: #ffffff;
+}
+.popover-wanteeed .btn-danger {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.popover-wanteeed .btn-danger:hover,
+.popover-wanteeed .btn-danger:focus,
+.popover-wanteeed .btn-danger:active,
+.popover-wanteeed .btn-danger.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-danger {
+  color: #ffffff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+.popover-wanteeed .btn-danger:active,
+.popover-wanteeed .btn-danger.active,
+.popover-wanteeed .open > .dropdown-toggle.btn-danger {
+  background-image: none;
+}
+.popover-wanteeed .btn-danger.disabled,
+.popover-wanteeed .btn-danger[disabled],
+.popover-wanteeed fieldset[disabled] .btn-danger,
+.popover-wanteeed .btn-danger.disabled:hover,
+.popover-wanteeed .btn-danger[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-danger:hover,
+.popover-wanteeed .btn-danger.disabled:focus,
+.popover-wanteeed .btn-danger[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-danger:focus,
+.popover-wanteeed .btn-danger.disabled:active,
+.popover-wanteeed .btn-danger[disabled]:active,
+.popover-wanteeed fieldset[disabled] .btn-danger:active,
+.popover-wanteeed .btn-danger.disabled.active,
+.popover-wanteeed .btn-danger[disabled].active,
+.popover-wanteeed fieldset[disabled] .btn-danger.active {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.popover-wanteeed .btn-danger .badge {
+  color: #d9534f;
+  background-color: #ffffff;
+}
+.popover-wanteeed .btn-link {
+  color: #428bca;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 0;
+}
+.popover-wanteeed .btn-link,
+.popover-wanteeed .btn-link:active,
+.popover-wanteeed .btn-link[disabled],
+.popover-wanteeed fieldset[disabled] .btn-link {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.popover-wanteeed .btn-link,
+.popover-wanteeed .btn-link:hover,
+.popover-wanteeed .btn-link:focus,
+.popover-wanteeed .btn-link:active {
+  border-color: transparent;
+}
+.popover-wanteeed .btn-link:hover,
+.popover-wanteeed .btn-link:focus {
+  color: #2a6496;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.popover-wanteeed .btn-link[disabled]:hover,
+.popover-wanteeed fieldset[disabled] .btn-link:hover,
+.popover-wanteeed .btn-link[disabled]:focus,
+.popover-wanteeed fieldset[disabled] .btn-link:focus {
+  color: #777777;
+  text-decoration: none;
+}
+.popover-wanteeed .btn-lg,
+.popover-wanteeed .btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.popover-wanteeed .btn-sm,
+.popover-wanteeed .btn-group-sm > .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.popover-wanteeed .btn-xs,
+.popover-wanteeed btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.popover-wanteeed .btn-block {
+  display: block;
+  width: 100%;
+}
+.popover-wanteeed .btn-block + .btn-block {
+  margin-top: 5px;
+}
+.popover-wanteeed input[type="submit"].btn-block,
+.popover-wanteeed input[type="reset"].btn-block,
+.popover-wanteeed input[type="button"].btn-block {
+  width: 100%;
+}
+.popover-wanteeed .btn-group,
+.popover-wanteeed .btn-group-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.popover-wanteeed .btn-group > .btn,
+.popover-wanteeed .btn-group-vertical > .btn {
+  position: relative;
+  float: left;
+}
+.popover-wanteeed .btn-group > .btn:hover,
+.popover-wanteeed .btn-group-vertical > .btn:hover,
+.popover-wanteeed .btn-group > .btn:focus,
+.popover-wanteeed .btn-group-vertical > .btn:focus,
+.popover-wanteeed .btn-group > .btn:active,
+.popover-wanteeed .btn-group-vertical > .btn:active,
+.popover-wanteeed .btn-group > .btn.active,
+.popover-wanteeed .btn-group-vertical > .btn.active {
+  z-index: 2;
+}
+.popover-wanteeed .btn-group > .btn:focus,
+.popover-wanteeed .btn-group-vertical > .btn:focus {
+  outline: 0;
+}
+.popover-wanteeed .btn-group .btn + .btn,
+.popover-wanteeed .btn-group .btn + .btn-group,
+.popover-wanteeed .btn-group .btn-group + .btn,
+.popover-wanteeed .btn-group .btn-group + .btn-group {
+  margin-left: -1px;
+}
+.popover-wanteeed .btn-toolbar {
+  margin-left: -5px;
+}
+.popover-wanteeed .btn-toolbar .btn-group,
+.popover-wanteeed .btn-toolbar .input-group {
+  float: left;
+}
+.popover-wanteeed .btn-toolbar > .btn,
+.popover-wanteeed .btn-toolbar > .btn-group,
+.popover-wanteeed .btn-toolbar > .input-group {
+  margin-left: 5px;
+}
+.popover-wanteeed .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 0;
+}
+.popover-wanteeed .btn-group > .btn:first-child {
+  margin-left: 0;
+}
+.popover-wanteeed .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.popover-wanteeed .btn-group > .btn:last-child:not(:first-child),
+.popover-wanteeed .btn-group > .dropdown-toggle:not(:first-child) {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.popover-wanteeed .btn-group > .btn-group {
+  float: left;
+}
+.popover-wanteeed .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
+  border-radius: 0;
+}
+.popover-wanteeed .btn-group > .btn-group:first-child > .btn:last-child,
+.popover-wanteeed .btn-group > .btn-group:first-child > .dropdown-toggle {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.popover-wanteeed .btn-group > .btn-group:last-child > .btn:first-child {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.popover-wanteeed .btn-group .dropdown-toggle:active,
+.popover-wanteeed .btn-group.open .dropdown-toggle {
+  outline: 0;
+}
+.popover-wanteeed .btn-group > .btn + .dropdown-toggle {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.popover-wanteeed .btn-group > .btn-lg + .dropdown-toggle {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.popover-wanteeed .btn-group.open .dropdown-toggle {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.popover-wanteeed .btn-group.open .dropdown-toggle.btn-link {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.popover-wanteeed .btn .caret {
+  margin-left: 0;
+}
+.popover-wanteeed .btn-lg .caret {
+  border-width: 5px 5px 0;
+  border-bottom-width: 0;
+}
+.popover-wanteeed .dropup .btn-lg .caret {
+  border-width: 0 5px 5px;
+}
+.popover-wanteeed .btn-group-vertical > .btn,
+.popover-wanteeed .btn-group-vertical > .btn-group,
+.popover-wanteeed .btn-group-vertical > .btn-group > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+}
+.popover-wanteeed .btn-group-vertical > .btn-group > .btn {
+  float: none;
+}
+.popover-wanteeed .btn-group-vertical > .btn + .btn,
+.popover-wanteeed .btn-group-vertical > .btn + .btn-group,
+.popover-wanteeed .btn-group-vertical > .btn-group + .btn,
+.popover-wanteeed .btn-group-vertical > .btn-group + .btn-group {
+  margin-top: -1px;
+  margin-left: 0;
+}
+.popover-wanteeed .btn-group-vertical > .btn:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.popover-wanteeed .btn-group-vertical > .btn:first-child:not(:last-child) {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.popover-wanteeed .btn-group-vertical > .btn:last-child:not(:first-child) {
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.popover-wanteeed .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
+  border-radius: 0;
+}
+.popover-wanteeed .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,
+.popover-wanteeed .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.popover-wanteeed .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.popover-wanteeed .btn-group-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+.popover-wanteeed .btn-group-justified > .btn,
+.popover-wanteeed .btn-group-justified > .btn-group {
+  float: none;
+  display: table-cell;
+  width: 1%;
+}
+.popover-wanteeed .btn-group-justified > .btn-group .btn {
+  width: 100%;
+}
+.popover-wanteeed .btn-group-justified > .btn-group .dropdown-menu {
+  left: auto;
+}
+.popover-wanteeed [data-toggle="buttons"] > .btn > input[type="radio"],
+.popover-wanteeed [data-toggle="buttons"] > .btn > input[type="checkbox"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.popover-wanteeed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  text-align: left;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  white-space: normal;
+  bottom:inherit ;
+}
+.popover-wanteeed.top {
+  margin-top: -10px;
+}
+.popover-wanteeed.right {
+  margin-left: 10px;
+}
+.popover-wanteeed.bottom {
+  margin-top: 10px;
+}
+.popover-wanteeed.left {
+  margin-left: -10px;
+}
+.popover-wanteeed .popover-title {
+  margin: 0;
+  padding: 8px 14px ;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  border-radius: 5px 5px 0 0;
+  text-align:center;
+}
+.popover-wanteeed .popover-content {
+  padding: 9px 14px;
+}
+.popover-wanteeed > .arrow,
+.popover-wanteeed > .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.popover-wanteeed > .arrow {
+  border-width: 11px;
+}
+.popover-wanteeed > .arrow:after {
+  border-width: 10px;
+  content: "";
+}
+.popover-wanteeed.top > .arrow {
+  left: 50%;
+  margin-left: -11px;
+  border-bottom-width: 0;
+  border-top-color: #999999;
+  border-top-color: rgba(0, 0, 0, 0.25);
+  bottom: -11px;
+}
+.popover-wanteeed.top > .arrow:after {
+  content: " ";
+  bottom: 1px;
+  margin-left: -10px;
+  border-bottom-width: 0;
+  border-top-color: #ffffff;
+}
+.popover-wanteeed.right > .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-left-width: 0;
+  border-right-color: #999999;
+  border-right-color: rgba(0, 0, 0, 0.25);
+}
+.popover-wanteeed.right > .arrow:after {
+  content: " ";
+  left: 1px;
+  bottom: -10px;
+  border-left-width: 0;
+  border-right-color: #ffffff;
+}
+.popover-wanteeed.bottom > .arrow {
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: #999999;
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+  top: -11px;
+}
+.popover-wanteeed.bottom > .arrow:after {
+  content: " ";
+  top: 1px;
+  margin-left: -10px;
+  border-top-width: 0;
+  border-bottom-color: #ffffff;
+}
+.popover-wanteeed.left > .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-right-width: 0;
+  border-left-color: #999999;
+  border-left-color: rgba(0, 0, 0, 0.25);
+}
+.popover-wanteeed.left > .arrow:after {
+  content: " ";
+  right: 1px;
+  border-right-width: 0;
+  border-left-color: #ffffff;
+  bottom: -10px;
+}
+.tour-backdrop-wanteeed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1999998;
+  background-color: #000;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.tour-step-backdrop-wanteeed {
+  position: relative;
+  z-index: 1999999;
+  background: inherit;
+}
+.tour-step-backdrop-wanteeed > td {
+  position: relative;
+  z-index: 1999999;
+}
+.tour-step-background-wanteeed {
+  position: absolute !important;
+  z-index: 1999998;
+  background: inherit;
+  border-radius: 6px;
+}
+.popover-wanteeed[class*="tour-"] {
+  z-index: 1999999;/* 1100;*/
+}
+.popover-wanteeed[class*="tour-"] .popover-navigation {
+  padding: 9px 14px;
+}
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="end"] {
+  float: right;
+}
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="prev"],
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="next"],
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="end"] {
+  cursor: pointer;
+}
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="prev"].disabled,
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="next"].disabled,
+.popover-wanteeed[class*="tour-"] .popover-navigation *[data-role="end"].disabled {
+  cursor: default;
+}
+.popover-wanteeed[class*="tour-"].orphan {
+  position: fixed;
+  margin-top: 0;
+}
+.popover-wanteeed[class*="tour-"].orphan .arrow {
+  display: none;
+}
+</style></head>
+<body style="cursor: default;">
+	<h1 id="title">Proportions et relations colorées d'une image</h1>
+	<h2 id="subtitle">Expérience d'analyse et de représentation synthétique</h2>
+	<p><a id="langue" href="http://www.geotests.net/couleurs/index.html">English version</a></p>
+	<p><a id="aide" href="http://couleurs.hypotheses.org/442" target="_blank" style="hidden: true;">Aide</a></p>
+	<div class="panneau">
+		<table>
+			<tbody><tr><td>
+				<div id="imageContainer">
+					<a href="http://www.geotests.net/couleurs/index.html?l=fr#" class="tooltip">
+						<img id="myImg" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/af_SC521.jpg" alt="Double dégradé" class="thumb">
+						<span id="clicktoexpand">Cliquez pour aggrandir</span>
+						<canvas id="myImgCanvas" style="z-index: 2; position: absolute; left: 19px;" onclick="canvasClick();" width="470" height="469" class="thumb">Your browser is not HTML5 compatible (canvas).</canvas>
+					</a>
+				</div>
+			</td><td>
+				<a href="http://www.geotests.net/couleurs/index.html?l=fr#" class="tooltip">
+					<div id="ThreeJS" hidden=""></div>
+					<!--<canvas class="thumb" id="histogram" width="800" height="800">Your browser is not HTML5 compatible (canvas).</canvas>
+					<span>Click to expand or rotate the 3D cylinder</span>-->
+					<div id="svg"><svg id="aart" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400"><defs></defs><g transform="rotate(-45,0,0) rotate(45,0,0)"><text fill="#222222" stroke="none" font-family="sans-serif" font-size="10px" font-style="normal" font-weight="normal" text-decoration="none" x="256" y="-188" transform="rotate(-45,0,0) rotate(90,0,0)">&lt;- Hue -&gt;</text><text fill="#222222" stroke="none" font-family="sans-serif" font-size="10px" font-style="normal" font-weight="normal" text-decoration="none" x="-133.33333333333334" y="196" transform="rotate(-90,0,0)">&lt;- Sat. -&gt;</text><path fill="none" stroke="#222222" d="M 384 200 A 184 184 0 1 1 383.9999080000077 199.81600003066657 M 200 0 L 200 400 M 0 200 L 400 200" stroke-miterlimit="10"></path><path fill="rgb(7,135,64)" stroke="rgb(7,135,64)" d="M 310 341 A 18 18 0 1 1 309.99999100000076 340.982000003" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(250,251,170)" stroke="rgb(250,251,170)" d="M 268 172 A 18 18 0 1 1 267.99999100000076 171.982000003" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(0,14,0)" stroke="rgb(0,14,0)" d="M 369 289 A 15 15 0 1 1 368.99999250000064 288.9850000025" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(190,224,62)" stroke="rgb(190,224,62)" d="M 336 161 A 14 14 0 1 1 335.9999930000006 160.98600000233333" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(115,189,54)" stroke="rgb(115,189,54)" d="M 341 207 A 14 14 0 1 1 340.9999930000006 206.98600000233333" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(248,100,22)" stroke="rgb(248,100,22)" d="M 269 49 A 11 11 0 1 1 268.99999450000047 48.989000001833325" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(219,31,0)" stroke="rgb(219,31,0)" d="M 236 24 A 10 10 0 1 1 235.9999950000004 23.99000000166666" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(247,181,49)" stroke="rgb(247,181,49)" d="M 299 90 A 9 9 0 1 1 298.99999550000035 89.9910000015" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(28,1,0)" stroke="rgb(28,1,0)" d="M 217 22 A 9 9 0 1 1 216.99999550000038 21.991000001499994" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(128,179,73)" stroke="rgb(128,179,73)" d="M 314 199 A 9 9 0 1 1 313.99999550000035 198.9910000015" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(192,221,93)" stroke="rgb(192,221,93)" d="M 307 171 A 8 8 0 1 1 306.99999600000035 170.99200000133334" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(227,190,64)" stroke="rgb(227,190,64)" d="M 301 112 A 8 8 0 1 1 300.99999600000035 111.99200000133332" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(212,119,20)" stroke="rgb(212,119,20)" d="M 289 62 A 6 6 0 1 1 288.99999700000023 61.994000000999996" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(39,126,34)" stroke="rgb(39,126,34)" d="M 320 259 A 5 5 0 1 1 319.99999750000023 258.99500000083333" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(207,197,98)" stroke="rgb(207,197,98)" d="M 280 147 A 4 4 0 1 1 279.9999980000002 146.99600000066667" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(253,159,60)" stroke="rgb(253,159,60)" d="M 274 84 A 4 4 0 1 1 273.9999980000002 83.99600000066667" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(236,253,197)" stroke="rgb(236,253,197)" d="M 242 192 A 4 4 0 1 1 241.99999800000018 191.99600000066667" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(175,140,21)" stroke="rgb(175,140,21)" d="M 317 93 A 4 4 0 1 1 316.9999980000002 92.99600000066667" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(61,105,82)" stroke="rgb(61,105,82)" d="M 243 263 A 4 4 0 1 1 242.99999800000018 262.99600000066664" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(71,0,0)" stroke="rgb(71,0,0)" d="M 203 22 A 3 3 0 1 1 202.99999850000012 21.997000000499998" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(76,73,66)" stroke="rgb(76,73,66)" d="M 219 183 A 3 3 0 1 1 218.99999850000012 182.9970000005" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(230,230,230)" stroke="rgb(230,230,230)" d="M 203 200 A 3 3 0 1 1 202.99999850000012 199.9970000005" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path><path fill="rgb(162,164,164)" stroke="rgb(162,164,164)" d="M 203 202 A 3 3 0 1 1 202.99999850000012 201.9970000005" onclick="detectColor(event);" fill-opacity="1" stroke-opacity="1" stroke-miterlimit="10"></path></g></svg></div>
+				</a>
+			</td><td style="vertical-align: top;">
+				<p></p><div id="vhist"><div style="background-color:#078740; color:#222222">&nbsp;[7:135:64] : 50</div><div style="background-color:#fafbaa; color:#222222">&nbsp;[250:251:170] : 49</div><div style="background-color:#000e00; color:#FFFFFF">&nbsp;[0:14:0] : 33</div><div style="background-color:#bee03e; color:#222222">&nbsp;[190:224:62] : 30</div><div style="background-color:#73bd36; color:#222222">&nbsp;[115:189:54] : 29</div><div style="background-color:#f86416; color:#222222">&nbsp;[248:100:22] : 20</div><div style="background-color:#db1f00; color:#222222">&nbsp;[219:31:0] : 17</div><div style="background-color:#f7b531; color:#222222">&nbsp;[247:181:49] : 13</div><div style="background-color:#1c0100; color:#FFFFFF">&nbsp;[28:1:0] : 12</div><div style="background-color:#80b349; color:#222222">&nbsp;[128:179:73] : 12</div><div style="background-color:#c0dd5d; color:#222222">&nbsp;[192:221:93] : 11</div><div style="background-color:#e3be40; color:#222222">&nbsp;[227:190:64] : 10</div><div style="background-color:#d47714; color:#222222">&nbsp;[212:119:20] : 6</div><div style="background-color:#277e22; color:#FFFFFF">&nbsp;[39:126:34] : 5</div><div style="background-color:#cfc562; color:#222222">&nbsp;[207:197:98] : 3</div><div style="background-color:#fd9f3c; color:#222222">&nbsp;[253:159:60] : 3</div><div style="background-color:#ecfdc5; color:#222222">&nbsp;[236:253:197] : 3</div><div style="background-color:#af8c15; color:#222222">&nbsp;[175:140:21] : 3</div><div style="background-color:#3d6952; color:#FFFFFF">&nbsp;[61:105:82] : 3</div><div style="background-color:#470000; color:#FFFFFF">&nbsp;[71:0:0] : 2</div></div><p></p>
+				<p><a id="svgPaletteLink" href="blob:http://www.geotests.net/809e158c-09ac-4b9b-845d-2302a58a14bc" download="palette.csv">Sv. palette</a></p>
+			</td></tr>
+		</tbody></table>
+	</div>
+	<div class="panneau">
+		<form action="http://www.geotests.net/couleurs/index.html?l=fr#">
+				<legend id="lp1">1- Image à analyser</legend>
+				<label id="selectanimage">Sélectionnez une image :</label><select id="imgSelector">
+					<option value="./images/carte.jpg" id="multicolormap">Carte multicolore</option>
+					<option selected="selected" value="./images/af_SC521.jpg" id="dualgradient">Double gradient</option>
+					<option value="./images/af_SC752.jpg" id="typology">Typologie</option>
+					<option value="./images/af_SC4211.jpg" id="yggradient">Gradient jaune-vert</option>
+					<option value="./images/af_SC371.jpg" id="complementary">Symboles de couleurs complémentaires</option>
+					<option value="./images/all16777216rgb.png" id="allrgb">Couleurs RGB</option>
+					<option value="./images/lagonbleu.jpg" id="bluelagoon">Lagon bleu</option>
+					<option value="./images/ste_victoire4.jpg" id="cezanne">Cézanne, MSV</option>
+					<option value="./images/van_gogh2.jpg" id="vangogh">VanGogh, autoportrait</option>
+				</select>
+				<label id="loadalocalimage">ou chargez une image locale</label><span><input type="file" id="files" name="files[]" multiple=""></span>
+		</form>
+	</div>
+	<form action="http://www.geotests.net/couleurs/index.html?l=fr#">
+		<div class="panneau">
+			<legend id="lp2">2- Paramètres</legend>
+			<table>
+				<tbody><tr>
+					<td><label id="sampling">Écart d'échantillonnage :</label></td>
+					<td><input id="imre" type="number" min="1" max="1000" value="100" size="4"></td>
+					<td><input id="pimre" type="button" value="+" onclick="plusN(this, 1);updateHist(rType);"><input id="mimre" type="button" value="-" onclick="moinsN(this, 1);updateHist(rType);"></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="maincolor">Couleurs ppales à exclure :</label></td>
+					<td><input id="nbpc" type="number" min="0" max="10" value="1" size="1"></td>
+					<td><input id="pnbpc" type="button" value="+" onclick="plusN(this, 1);updateHist(rType);"><input id="mnbpc" type="button" value="-" onclick="moinsN(this, 1);updateHist(rType);"></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="lumin">Luminosité min. :</label></td>
+					<td><input id="lmin" type="number" min="0" max="255" value="0" size="1"></td>
+					<td><input id="plmin" type="button" value="+" onclick="plusN(this, 1);updateHist(rType);"><input id="mlmin" type="button" value="-" onclick="moinsN(this, 1);updateHist(rType);"></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="circlecontour">Contours des cercles :</label></td>
+					<td><input id="cb" type="checkbox" value="" onclick="updateHist(rType);"></td>
+				</tr>
+				<tr>
+					<td><label id="threshold">Seuil de différence :</label></td>
+					<td><input id="tyd" type="number" min="0.01" max="256" value="20" size="4"></td>
+					<td><input id="ptyd" type="button" value="+" onclick="plusN(this, 1);updateHist(rType);"><input id="mtyd" type="button" value="-" onclick="moinsN(this, 1);updateHist(rType);"></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="wcolorspace">Espace de couleurs de travail :</label></td>
+					<td>
+						
+						<select id="colorspaceselect" name="colorspace" onchange="updateHist(rType);">
+							<option value="YUV" selected="">YUV</option>
+							<option value="HSL">HSL</option>
+							<option value="CIELAB">CIE L*a*b*</option>
+							<option value="CIELUV">CIE L*u*v*</option>
+						</select>
+						
+					</td>
+					<td></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="lumax">Luminosité max. :</label></td>
+					<td><input id="lmax" type="number" min="0" max="255" value="255" size="1"></td>
+					<td><input id="plmax" type="button" value="+" onclick="plusN(this, 1);updateHist(rType);"><input id="mlmax" type="button" value="-" onclick="moinsN(this, 1);updateHist(rType);"></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="axislabels">Libellés des axes :</label></td>
+					<td><input id="ld" type="checkbox" value="" checked="true" onclick="updateHist(rType);"></td>
+				</tr>
+			</tbody></table>
+		</div>
+	
+	
+	<div class="panneau">
+		<legend id="lp3">3- Représentation</legend>
+			<table>
+				<tbody><tr>
+					<td><label id="symbolsize">Taille des symboles :</label></td>
+					<td><input id="zcc" type="number" min="1" max="4000" value="100" size="2"></td>
+					<td><input id="pzcc" type="button" value="+" onclick="plusN(this, 10);updateHist(rType);"><input id="mzcc" type="button" value="-" onclick="moinsN(this, 10);updateHist(rType);"></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="axisorient">Axes en 2D :</label>
+						<form action="http://www.geotests.net/couleurs/index.html?l=fr#">
+							<input type="radio" id="circletypehsl" name="circletype" value="t1" checked="true" onclick="updateHist(rType);"><label>HSL</label><br>
+							<input type="radio" id="circletypehls" name="circletype" value="t2" onclick="updateHist(rType);"><label>HLS</label><br>
+						</form>
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="analysistype">Type d'analyse :</label><br>
+						<form action="http://www.geotests.net/couleurs/index.html?l=fr#">
+							<input type="radio" id="antypewi" name="antyperb" value="wholeImage" checked="true" onclick="updateHist(rType);"><label id="wholeimage">Toute l'image</label><br>
+							<input type="radio" id="antypeln" name="antyperb" value="line" onclick="updateHist(rType);"><label id="ontheline">Une ligne<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2 clics)</label><br>
+						</form>
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="maincolortype">Couleur du grp :</label><br>
+						<form action="http://www.geotests.net/couleurs/index.html?l=fr#">
+							<input type="radio" id="mgcavg" name="mcgrb" value="average" checked="true" onclick="updateHist(rType);"><label id="average">Moyenne</label><br>
+							<input type="radio" id="mgcmed" name="mcgrb" value="median" onclick="updateHist(rType);"><label id="median">Médiane</label><br>
+						</form>
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><label id="symbopacity">Opacité :</label><br>
+						<input id="so" type="number" min="0.1" max="4" value="1" size="2"><br>
+						<input id="pso" type="button" value="+" onclick="plusN(this, 0.1);updateHist(rType);"><input id="mso" type="button" value="-" onclick="moinsN(this, 0.1);updateHist(rType);">
+					</td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>
+						<div class="buttonwrapper">
+							<a href="http://www.geotests.net/couleurs/index.html?l=fr#ce" class="ovalbutton" onclick="axes=&#39;hls&#39;; cc3d=false; updateHist(&#39;CC&#39;);"><span><b id="drawcc">Cercle coloré (2D)</b></span></a>
+							<a href="http://www.geotests.net/couleurs/index.html?l=fr#cy" class="ovalbutton" onclick="cc3d=true; updateHist(&#39;CC3D&#39;);"><span><b id="drawcc3d">Cylindre coloré (3D)</b></span></a>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+	</div>
+	<div class="panneau">
+		<legend id="lp4">4- Remplacement de couleur</legend>
+		<input id="choosecolor" type="button" class="" value="Choix de la couleur" onclick="clickOnVisu();">
+		<input id="colorpick" class="color" autocomplete="off" style="background-image: none; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);"><input id="replacecolor" type="button" value="Remplacer la couleur" onclick="replaceColor();"><br>
+	</div>
+	<div class="panneau" id="p5">
+		<legend id="lp5">5- Export</legend>
+		<a href="http://www.geotests.net/couleurs/index.html?l=fr#" id="svgPNG" onclick="svgImg();"><label id="createPNG">Créer PNG</label></a>
+		<a href="data:image/svg+xml;base64,PHN2ZyBpZD0iYWFydCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+PGRlZnM+PC9kZWZzPjxnIHRyYW5zZm9ybT0icm90YXRlKC00NSwwLDApIHJvdGF0ZSg0NSwwLDApIj48dGV4dCBmaWxsPSIjMjIyMjIyIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNTYiIHk9Ii0xODgiIHRyYW5zZm9ybT0icm90YXRlKC00NSwwLDApIHJvdGF0ZSg5MCwwLDApIj4mbHQ7LSBIdWUgLSZndDs8L3RleHQ+PHRleHQgZmlsbD0iIzIyMjIyMiIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMHB4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iLTEzMy4zMzMzMzMzMzMzMzMzNCIgeT0iMTk2IiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMCwwKSI+Jmx0Oy0gU2F0LiAtJmd0OzwvdGV4dD48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyMjIyMjIiIGQ9Ik0gMzg0IDIwMCBBIDE4NCAxODQgMCAxIDEgMzgzLjk5OTkwODAwMDAwNzcgMTk5LjgxNjAwMDAzMDY2NjU3IE0gMjAwIDAgTCAyMDAgNDAwIE0gMCAyMDAgTCA0MDAgMjAwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoNywxMzUsNjQpIiBzdHJva2U9InJnYig3LDEzNSw2NCkiIGQ9Ik0gMzEwIDM0MSBBIDE4IDE4IDAgMSAxIDMwOS45OTk5OTEwMDAwMDA3NiAzNDAuOTgyMDAwMDAzIiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMjUwLDI1MSwxNzApIiBzdHJva2U9InJnYigyNTAsMjUxLDE3MCkiIGQ9Ik0gMjY4IDE3MiBBIDE4IDE4IDAgMSAxIDI2Ny45OTk5OTEwMDAwMDA3NiAxNzEuOTgyMDAwMDAzIiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMCwxNCwwKSIgc3Ryb2tlPSJyZ2IoMCwxNCwwKSIgZD0iTSAzNjkgMjg5IEEgMTUgMTUgMCAxIDEgMzY4Ljk5OTk5MjUwMDAwMDY0IDI4OC45ODUwMDAwMDI1IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMTkwLDIyNCw2MikiIHN0cm9rZT0icmdiKDE5MCwyMjQsNjIpIiBkPSJNIDMzNiAxNjEgQSAxNCAxNCAwIDEgMSAzMzUuOTk5OTkzMDAwMDAwNiAxNjAuOTg2MDAwMDAyMzMzMzMiIG9uY2xpY2s9ImRldGVjdENvbG9yKGV2ZW50KTsiIGZpbGwtb3BhY2l0eT0iMSIgc3Ryb2tlLW9wYWNpdHk9IjEiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYigxMTUsMTg5LDU0KSIgc3Ryb2tlPSJyZ2IoMTE1LDE4OSw1NCkiIGQ9Ik0gMzQxIDIwNyBBIDE0IDE0IDAgMSAxIDM0MC45OTk5OTMwMDAwMDA2IDIwNi45ODYwMDAwMDIzMzMzMyIgb25jbGljaz0iZGV0ZWN0Q29sb3IoZXZlbnQpOyIgZmlsbC1vcGFjaXR5PSIxIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48L3BhdGg+PHBhdGggZmlsbD0icmdiKDI0OCwxMDAsMjIpIiBzdHJva2U9InJnYigyNDgsMTAwLDIyKSIgZD0iTSAyNjkgNDkgQSAxMSAxMSAwIDEgMSAyNjguOTk5OTk0NTAwMDAwNDcgNDguOTg5MDAwMDAxODMzMzI1IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMjE5LDMxLDApIiBzdHJva2U9InJnYigyMTksMzEsMCkiIGQ9Ik0gMjM2IDI0IEEgMTAgMTAgMCAxIDEgMjM1Ljk5OTk5NTAwMDAwMDQgMjMuOTkwMDAwMDAxNjY2NjYiIG9uY2xpY2s9ImRldGVjdENvbG9yKGV2ZW50KTsiIGZpbGwtb3BhY2l0eT0iMSIgc3Ryb2tlLW9wYWNpdHk9IjEiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYigyNDcsMTgxLDQ5KSIgc3Ryb2tlPSJyZ2IoMjQ3LDE4MSw0OSkiIGQ9Ik0gMjk5IDkwIEEgOSA5IDAgMSAxIDI5OC45OTk5OTU1MDAwMDAzNSA4OS45OTEwMDAwMDE1IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMjgsMSwwKSIgc3Ryb2tlPSJyZ2IoMjgsMSwwKSIgZD0iTSAyMTcgMjIgQSA5IDkgMCAxIDEgMjE2Ljk5OTk5NTUwMDAwMDM4IDIxLjk5MTAwMDAwMTQ5OTk5NCIgb25jbGljaz0iZGV0ZWN0Q29sb3IoZXZlbnQpOyIgZmlsbC1vcGFjaXR5PSIxIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48L3BhdGg+PHBhdGggZmlsbD0icmdiKDEyOCwxNzksNzMpIiBzdHJva2U9InJnYigxMjgsMTc5LDczKSIgZD0iTSAzMTQgMTk5IEEgOSA5IDAgMSAxIDMxMy45OTk5OTU1MDAwMDAzNSAxOTguOTkxMDAwMDAxNSIgb25jbGljaz0iZGV0ZWN0Q29sb3IoZXZlbnQpOyIgZmlsbC1vcGFjaXR5PSIxIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48L3BhdGg+PHBhdGggZmlsbD0icmdiKDE5MiwyMjEsOTMpIiBzdHJva2U9InJnYigxOTIsMjIxLDkzKSIgZD0iTSAzMDcgMTcxIEEgOCA4IDAgMSAxIDMwNi45OTk5OTYwMDAwMDAzNSAxNzAuOTkyMDAwMDAxMzMzMzQiIG9uY2xpY2s9ImRldGVjdENvbG9yKGV2ZW50KTsiIGZpbGwtb3BhY2l0eT0iMSIgc3Ryb2tlLW9wYWNpdHk9IjEiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYigyMjcsMTkwLDY0KSIgc3Ryb2tlPSJyZ2IoMjI3LDE5MCw2NCkiIGQ9Ik0gMzAxIDExMiBBIDggOCAwIDEgMSAzMDAuOTk5OTk2MDAwMDAwMzUgMTExLjk5MjAwMDAwMTMzMzMyIiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMjEyLDExOSwyMCkiIHN0cm9rZT0icmdiKDIxMiwxMTksMjApIiBkPSJNIDI4OSA2MiBBIDYgNiAwIDEgMSAyODguOTk5OTk3MDAwMDAwMjMgNjEuOTk0MDAwMDAwOTk5OTk2IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMzksMTI2LDM0KSIgc3Ryb2tlPSJyZ2IoMzksMTI2LDM0KSIgZD0iTSAzMjAgMjU5IEEgNSA1IDAgMSAxIDMxOS45OTk5OTc1MDAwMDAyMyAyNTguOTk1MDAwMDAwODMzMzMiIG9uY2xpY2s9ImRldGVjdENvbG9yKGV2ZW50KTsiIGZpbGwtb3BhY2l0eT0iMSIgc3Ryb2tlLW9wYWNpdHk9IjEiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYigyMDcsMTk3LDk4KSIgc3Ryb2tlPSJyZ2IoMjA3LDE5Nyw5OCkiIGQ9Ik0gMjgwIDE0NyBBIDQgNCAwIDEgMSAyNzkuOTk5OTk4MDAwMDAwMiAxNDYuOTk2MDAwMDAwNjY2NjciIG9uY2xpY2s9ImRldGVjdENvbG9yKGV2ZW50KTsiIGZpbGwtb3BhY2l0eT0iMSIgc3Ryb2tlLW9wYWNpdHk9IjEiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYigyNTMsMTU5LDYwKSIgc3Ryb2tlPSJyZ2IoMjUzLDE1OSw2MCkiIGQ9Ik0gMjc0IDg0IEEgNCA0IDAgMSAxIDI3My45OTk5OTgwMDAwMDAyIDgzLjk5NjAwMDAwMDY2NjY3IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMjM2LDI1MywxOTcpIiBzdHJva2U9InJnYigyMzYsMjUzLDE5NykiIGQ9Ik0gMjQyIDE5MiBBIDQgNCAwIDEgMSAyNDEuOTk5OTk4MDAwMDAwMTggMTkxLjk5NjAwMDAwMDY2NjY3IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMTc1LDE0MCwyMSkiIHN0cm9rZT0icmdiKDE3NSwxNDAsMjEpIiBkPSJNIDMxNyA5MyBBIDQgNCAwIDEgMSAzMTYuOTk5OTk4MDAwMDAwMiA5Mi45OTYwMDAwMDA2NjY2NyIgb25jbGljaz0iZGV0ZWN0Q29sb3IoZXZlbnQpOyIgZmlsbC1vcGFjaXR5PSIxIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48L3BhdGg+PHBhdGggZmlsbD0icmdiKDYxLDEwNSw4MikiIHN0cm9rZT0icmdiKDYxLDEwNSw4MikiIGQ9Ik0gMjQzIDI2MyBBIDQgNCAwIDEgMSAyNDIuOTk5OTk4MDAwMDAwMTggMjYyLjk5NjAwMDAwMDY2NjY0IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoNzEsMCwwKSIgc3Ryb2tlPSJyZ2IoNzEsMCwwKSIgZD0iTSAyMDMgMjIgQSAzIDMgMCAxIDEgMjAyLjk5OTk5ODUwMDAwMDEyIDIxLjk5NzAwMDAwMDQ5OTk5OCIgb25jbGljaz0iZGV0ZWN0Q29sb3IoZXZlbnQpOyIgZmlsbC1vcGFjaXR5PSIxIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48L3BhdGg+PHBhdGggZmlsbD0icmdiKDc2LDczLDY2KSIgc3Ryb2tlPSJyZ2IoNzYsNzMsNjYpIiBkPSJNIDIxOSAxODMgQSAzIDMgMCAxIDEgMjE4Ljk5OTk5ODUwMDAwMDEyIDE4Mi45OTcwMDAwMDA1IiBvbmNsaWNrPSJkZXRlY3RDb2xvcihldmVudCk7IiBmaWxsLW9wYWNpdHk9IjEiIHN0cm9rZS1vcGFjaXR5PSIxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiPjwvcGF0aD48cGF0aCBmaWxsPSJyZ2IoMjMwLDIzMCwyMzApIiBzdHJva2U9InJnYigyMzAsMjMwLDIzMCkiIGQ9Ik0gMjAzIDIwMCBBIDMgMyAwIDEgMSAyMDIuOTk5OTk4NTAwMDAwMTIgMTk5Ljk5NzAwMDAwMDUiIG9uY2xpY2s9ImRldGVjdENvbG9yKGV2ZW50KTsiIGZpbGwtb3BhY2l0eT0iMSIgc3Ryb2tlLW9wYWNpdHk9IjEiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYigxNjIsMTY0LDE2NCkiIHN0cm9rZT0icmdiKDE2MiwxNjQsMTY0KSIgZD0iTSAyMDMgMjAyIEEgMyAzIDAgMSAxIDIwMi45OTk5OTg1MDAwMDAxMiAyMDEuOTk3MDAwMDAwNSIgb25jbGljaz0iZGV0ZWN0Q29sb3IoZXZlbnQpOyIgZmlsbC1vcGFjaXR5PSIxIiBzdHJva2Utb3BhY2l0eT0iMSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIj48L3BhdGg+PC9nPjwvc3ZnPg==" id="svgSVG" download="download"><label id="createSVG">Créer SVG</label></a>
+		<canvas id="canvas2" width="1" height="1">Your browser don't support HTML5 (canvas).</canvas>
+		<canvas id="canvasImg" width="1" height="1">Your browser don't support HTML5 (canvas).</canvas>
+	</div>
+	<br>
+	<p id="runtime">Durée du calcul : 0.014s.</p>
+	<p>
+		<label id="author">Auteur : </label><a href="http://couleurs.hypotheses.org/">L. Jégou</a>, Université Toulouse-2 Jean Jaurès, Dépt. de Géographie,-2014, version du 23/12/14.<br>
+		<label id="libraries">Bibs. : </label><a href="http://threejs.org/">Three.js</a> <a href="https://code.google.com/p/dat-gui/">DAT-GUI</a> <a href="http://jscolor.com/">JSColor picker</a> <a href="http://code.google.com/p/canvg/">Canvg</a> <a href="http://www.phpied.com/rgb-color-parser-in-javascript/">RGBColor</a><br>
+		<label id="licence">Licence : </label><a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en">Creative Commons Attribution 3.0 Unported License</a>
+	</p>
+	<script type="text/javascript" src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/frequs_nt.js.téléchargement"></script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-42695418-1', 'geotests.net');
+	  ga('send', 'pageview');
+	</script>
+
+
+</form><style id="extraClass">.extraClassAspect {-webkit-transform: scaleX(1.34)!important;}.extraClassCrop {-webkit-transform: scale(1.34)!important;}</style><iframe id="wanteeedPanel" data-version="1.10.3" allowtransparency="true" style="
+      width: 335px !important;
+      height: 250px !important;
+      min-width: 0;
+      min-height: 0;
+      display: none;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      left: auto;
+      border: none;
+      background-color: #ffffff;
+      overflow: hidden;
+      z-index: 9145739864;
+      clip: auto;
+      border-radius: 3px;
+      box-shadow: rgb(181, 181, 181) 1px 1px 3px 2px;
+    " src="./Proportions et relations color&amp;eacute;es d&#39;une image_files/saved_resource.html"></iframe></body></html>
